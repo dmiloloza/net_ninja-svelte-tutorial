@@ -27,7 +27,6 @@
         text-align: center;
         background: #d2d2d2;
     }
-
     .promo .modal{
         background: crimson;
         color: #e7e7e7;
