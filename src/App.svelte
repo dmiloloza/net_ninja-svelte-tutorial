@@ -1,6 +1,6 @@
 <script>
     let people = [
-       /* {
+        {
             name: 'Yoshi',
             beltColor: 'black',
             age: 25,
@@ -15,7 +15,7 @@
             beltColor: 'brown',
             age: 35,
             id: 3
-        }*/
+        }
     ]
 
     let firstName = 'John';
@@ -23,7 +23,13 @@
     let beltColor = 'black';
 
     $: fullName = `${firstName} ${lastName}`;
-    $: console.log(beltColor)
+    $: console.log(beltColor);
+
+    const handleClick = id => {
+        //delete the person from people
+        people = people.filter(person => person.id !== id)
+    };
+
 </script>
 
 <main>
@@ -36,8 +42,9 @@
             <div>
                 <h4>{person.name}</h4>
                 <p>{person.age} years old, {person.beltColor} belt</p>
+                <button on:click={() => handleClick(person.id)}>delete</button>
             </div>
-            {:else}
+        {:else}
             <p>There are no people to show!</p>
         {/each}
     </div>
