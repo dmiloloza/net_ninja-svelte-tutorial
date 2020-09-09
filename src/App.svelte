@@ -1,8 +1,12 @@
 <script>
+    let firstName = 'John';
+    let lastName = 'Doe';
+    let beltColor = 'black';
+
     let people = [
-       /* {
+        {
             name: 'Yoshi',
-            beltColor: 'black',
+            beltColor: 'yellow',
             age: 25,
             id: 1
         }, {
@@ -15,15 +19,23 @@
             beltColor: 'brown',
             age: 35,
             id: 3
-        }*/
+        },{
+            name: 'Bowser',
+            beltColor: 'black',
+            age: 37,
+            id: 8
+        }
+
     ]
 
-    let firstName = 'John';
-    let lastName = 'Doe';
-    let beltColor = 'black';
-
     $: fullName = `${firstName} ${lastName}`;
-    $: console.log(beltColor)
+    $: console.log(beltColor);
+
+    const handleClick = id => {
+        //delete the person from people. False filters that item from array (person.id !== id)
+        people = people.filter(person => person.id !== id)
+    };
+    console.log(people.length)
 </script>
 
 <main>
@@ -31,17 +43,36 @@
     <input bind:value={firstName} type="text">
     <input bind:value={lastName} type="text">
     <input bind:value={beltColor} type="text">
+    <hr>
+    {#if people.length === 1 }
+        <p>Solo ninja</p>
+    {:else if people.length <=3}
+        <p>Small team</p>
+    {:else}
+        <p>Ninja squad</p>
+    {/if}
+    <hr>
     <div>
         {#each people as person (person.id)}
             <div>
                 <h4>{person.name}</h4>
+                {#if person.beltColor === 'black'}
+                    <p><strong>MASTER NINJA</strong></p>
+                {/if}
                 <p>{person.age} years old, {person.beltColor} belt</p>
+                <button on:click={() => handleClick(person.id)}>delete</button>
             </div>
-            {:else}
+        {:else}
             <p>There are no people to show!</p>
         {/each}
     </div>
+    <hr>
+
+
 </main>
+
+
+
 
 <style>
     main {
