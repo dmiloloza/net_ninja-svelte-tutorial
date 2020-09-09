@@ -26,7 +26,7 @@
     $: console.log(beltColor);
 
     const handleClick = id => {
-        //delete the person from people
+        //delete the person from people. False filters that item from array (person.id !== id)
         people = people.filter(person => person.id !== id)
     };
 
