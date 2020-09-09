@@ -1,4 +1,6 @@
 <script>
+    import Modal from './Modal.svelte';
+
     let firstName = 'John';
     let lastName = 'Doe';
     let beltColor = 'black';
@@ -38,6 +40,7 @@
     console.log(people.length)
 </script>
 
+<Modal/>
 <main>
     <p>{fullName} - {beltColor} belt</p>
     <input bind:value={firstName} type="text">
@@ -66,13 +69,7 @@
             <p>There are no people to show!</p>
         {/each}
     </div>
-    <hr>
-
-
 </main>
-
-
-
 
 <style>
     main {
