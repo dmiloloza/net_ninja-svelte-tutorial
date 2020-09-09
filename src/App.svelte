@@ -6,7 +6,7 @@
     let people = [
         {
             name: 'Yoshi',
-            beltColor: 'black',
+            beltColor: 'yellow',
             age: 25,
             id: 1
         }, {
@@ -19,7 +19,13 @@
             beltColor: 'brown',
             age: 35,
             id: 3
+        },{
+            name: 'Bowser',
+            beltColor: 'black',
+            age: 37,
+            id: 8
         }
+
     ]
 
     $: fullName = `${firstName} ${lastName}`;
@@ -29,24 +35,22 @@
         //delete the person from people. False filters that item from array (person.id !== id)
         people = people.filter(person => person.id !== id)
     };
-
-    let num = 4;
+    console.log(people.length)
 </script>
-
-{#if num > 20 }
-    <p>Greater than 20</p>
-{:else if num > 5}
-    <p>Greater than 5</p>
-{:else}
-    <p>Not greater than 5</p>
-{/if}
-
 
 <main>
     <p>{fullName} - {beltColor} belt</p>
     <input bind:value={firstName} type="text">
     <input bind:value={lastName} type="text">
     <input bind:value={beltColor} type="text">
+    <hr>
+    {#if people.length === 1 }
+        <p>Solo ninja</p>
+    {:else if people.length <=3}
+        <p>Small team</p>
+    {:else}
+        <p>Ninja squad</p>
+    {/if}
     <hr>
     <div>
         {#each people as person (person.id)}
@@ -62,7 +66,13 @@
             <p>There are no people to show!</p>
         {/each}
     </div>
+    <hr>
+
+
 </main>
+
+
+
 
 <style>
     main {
