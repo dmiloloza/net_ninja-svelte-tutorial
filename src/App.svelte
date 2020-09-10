@@ -41,11 +41,16 @@
     };
 
     const toggleModal = () => showModal = !showModal;
+    const addPerson = (e) => {
+        const person = e.detail;
+        people = [person, ...people];
+        showModal = false
+    }
 
 </script>
 <!--showModel={showModel}  => when variable and prop name is the same. WE can use short hand like below-->
 <Modal on:click={toggleModal} {showModal}>
-    <AddPersonForm/>
+    <AddPersonForm on:addPerson={addPerson}/>
 </Modal>
 
 <main>
@@ -68,7 +73,7 @@
                 {#if person.beltColor === 'black'}
                     <p><strong>MASTER NINJA</strong></p>
                 {/if}
-                <p>{person.age} years old, {person.beltColor} belt</p>
+                <p>{person.age} years old, {person.beltColor} belt, {person.skills}</p>
                 <button on:click={() => handleClick(person.id)}>delete</button>
             </div>
         {:else}
