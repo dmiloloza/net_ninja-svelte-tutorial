@@ -40,11 +40,18 @@
         people = people.filter(person => person.id !== id)
     };
 
-    const toggleModal = () => showModal=!showModal;
+    const toggleModal = () => showModal = !showModal;
 
 </script>
 <!--showModel={showModel}  => when variable and prop name is the same. WE can use short hand like below-->
-<Modal message="SIGN UP for Mario Kart" {showModal} on:click={toggleModal}/>
+<Modal on:click={toggleModal} {showModal}>
+<h3>Add a New Person</h3>
+    <from>
+        <input type="text" placeholder="name">
+        <input type="text" placeholder="belt color">
+        <button>Add person</button>
+    </from>
+</Modal>
 <main>
     <button on:click={toggleModal}>Open Modal</button>
     <p>{fullName} - {beltColor} belt</p>
