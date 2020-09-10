@@ -1,5 +1,6 @@
 <script>
     import Modal from './Modal.svelte';
+    import AddPersonForm from "./AddPersonForm.svelte";
 
     let showModal = false;
 
@@ -33,7 +34,6 @@
     ]
 
     $: fullName = `${firstName} ${lastName}`;
-    $: console.log(beltColor);
 
     const handleClick = id => {
         //delete the person from people. False filters that item from array (person.id !== id)
@@ -45,13 +45,9 @@
 </script>
 <!--showModel={showModel}  => when variable and prop name is the same. WE can use short hand like below-->
 <Modal on:click={toggleModal} {showModal}>
-<h3>Add a New Person</h3>
-    <from>
-        <input type="text" placeholder="name">
-        <input type="text" placeholder="belt color">
-        <button>Add person</button>
-    </from>
+    <AddPersonForm/>
 </Modal>
+
 <main>
     <button on:click={toggleModal}>Open Modal</button>
     <p>{fullName} - {beltColor} belt</p>
