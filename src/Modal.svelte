@@ -5,7 +5,7 @@
 </script>
 
 {#if showModal}
-    <div class="backdrop" class:promo={isPromo} on:click>
+    <div class="backdrop" class:promo={isPromo} on:click|self> <!--ony this div is event target-->
         <div class="modal">
             <p>{message}</p>
         </div>
